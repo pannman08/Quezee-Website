@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Quezee - Watch videos from YouTube on a legacy version of Windows</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen,projection" />
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+<style>
+  .online 
+  {
+      color: green;
+  }
+      
+  .offline 
+  {
+      color: red;
+  }
+</style>
+
+<script>
+
+    async function checkConnectivity() {
+      try 
+      {
+          const response = await fetch("http://75.188.177.81", { method: "HEAD", mode: "no-cors" });
+          document.getElementById('status').textContent = 'Online';
+          document.getElementById('status').classList.remove('offline');
+          document.getElementById('status').classList.add('online');
+      } 
+      catch (error) 
+      {
+        document.getElementById('status').textContent = 'Offline';
+        document.getElementById('status').classList.remove('online');
+        document.getElementById('status').classList.add('offline');
+      }
+    }
+
+checkConnectivity();
+
+</script>
+
+</head>
+<body>
+<div id="container"> <a id="top"></a>
+  <p class="hide">Skip to: <a href="#menu">site menu</a> | <a href="#sectionmenu">section menu</a> | <a href="#main">main content</a></p>
+  <div id="sitename">
+    <img draggable="false" style="width: 250px; padding: 22px; margin-left: -20px; float: left;" src="img/Quezee.png" alt="">
+  </div>
+  <div id="nav">
+    <ul>
+      <li id="current"><a href="./">Home</a></li>
+      <li ><a href="/downloads">Downloads</a></li>
+      <li><a target="_blank" href="https://github.com/pannman08/Quezee">Source Code</a></li>
+    </ul>
+    <p class="hide"><a href="#top">Back to top</a></p>
+  </div>
+  <div id="wrap1">
+    <div id="wrap2">
+      <div id="topbox"> <strong><span class="hide">Currently viewing: </span><a href="#"></a> &nbsp; <a href="#"></a></strong> </div>
+      <div id="leftside"> <a id="sectionmenu"></a>
+        <p class="soft">Quezee is licensed under the Apache License 2.0, a permissive open-source license. <a target="_blank" href="https://github.com/pannman08/Quezee/blob/main/LICENSE">Learn more...</a></p>
+        <h1>Links</h1>
+        <p class="menublock"> 
+          <a target="_blank" class="nav" href="https://www.youtube.com/@pannman08">YouTube</a><br class="hide" />
+          <a target="_blank" class="nav" href="https://github.com/pannman08">GitHub</a><br class="hide" />
+          <a target="_blank" class="nav" href="mailto:pannman08@hotmail.com">Email</a><br class="hide" />
+          <a class="hide" href="#top">Back to top</a> </p>
+      </div>
+      <div id="rightside">
+        <h1>Latest Version</h1>
+        <p><strong>Alpha Version 1.0</strong></p>
+        <p style="margin-top: -4px;">No updates here...</p>
+
+        <h1>Server Status</h1>
+        <p id="status" style="font-size: 15px; margin-top: -5px;">Fetching...</p>
+        <p class="smallcaps" style="margin-top: -10px;">Jack the Ripper v1.0<br /></p>
+      </div>
+      <a id="main"></a>
+      <div id="content">
+        <h1 style="margin-top: -8px;">Watch videos from YouTube on a legacy version of Windows</h1>
+        <p>Quezee (pronounced KWEH-zee) is a free and open-source program that brings the joy of watching your favorite videos on YouTube back to life on legacy versions of Windows, allowing you to relive the nostalgia of classic versions of Windows while accessing the latest content from YouTube.</p>
+        <p>If you're a fan of old versions of Windows or just trying to bring your old system back to life, Quezee is here to help with that! This lightweight tool makes it super easy to navigate and watch videos on ancient versions of Windows. Quezee is sure to bring more entertainment to users of vintage Windows versions, making it easy to enjoy new videos on an ancient operating system!</p>
+        <h2>Jack the Ripper</h2>
+        <p>A standout feature of Quezee is its integration with Jack the Ripper, a custom-built YouTube downloader. Designed specifically to work only with Quezee, Jack the Ripper is a PHP-based tool that enables seamless video downloads.</p>
+        <p class="hide"><a href="#top">Back to top</a></p>
+      </div>
+    </div>
+    <div id="footer">A Cameron Evans Production. Copyright &copy; 2024.</div>
+  </div>
+</div>
+</body>
+</html>
