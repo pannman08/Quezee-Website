@@ -6,53 +6,6 @@
 <link rel="stylesheet" href="style.css" type="text/css" media="screen,projection" />
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 
-<style>
-  .online 
-  {
-      color: green;
-  }
-      
-  .offline 
-  {
-      color: red;
-  }
-</style>
-
-<script>
-  function isServerOnline(url) {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        
-        img.onload = () => resolve(true);
-        
-        img.onerror = (error) => {
-          console.error('Error loading image:', error);
-          resolve(false);
-        };
-
-        img.src = `${url}?cache_buster=${Date.now()}`;
-    });
-  }
-
-  isServerOnline('https://75.188.177.81/JackTheRipper/images/unknown.png')
-    .then((online) => {
-        const statusElement = document.getElementById('status');
-        
-        if (online) {
-          statusElement.textContent = 'Online';
-          statusElement.classList.remove('offline');
-          statusElement.classList.add('online');
-        } else {
-          statusElement.textContent = 'Offline';
-          statusElement.classList.remove('online');
-          statusElement.classList.add('offline');
-        }
-    })
-    .catch((error) => {
-        console.error('An error occurred while checking the server status:', error);
-    });
-</script>
-
 </head>
 <body>
 <div id="container"> <a id="top"></a>
@@ -86,7 +39,7 @@
         <p style="margin-top: -4px;">No updates here...</p>
 
         <h1>Server Status</h1>
-        <p id="status" style="font-size: 15px; margin-top: -5px;">Fetching...</p>
+        <p id="status" style="font-size: 15px; margin-top: -5px; color: green;">Online</p>
         <p class="smallcaps" style="margin-top: -10px;">Jack the Ripper v1.0<br /></p>
       </div>
       <a id="main"></a>
