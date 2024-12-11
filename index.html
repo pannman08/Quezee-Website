@@ -19,35 +19,27 @@
 </style>
 
 <script>
-  async function checkStatus(url) {
-    try {
-        const response = await fetch(url, { method: 'GET' });
-        if (response.ok) {
-            const text = await response.text();
-            if (text.trim() === "1") {
-                document.getElementById('status').textContent = 'Online';
-                document.getElementById('status').classList.remove('offline');
-                document.getElementById('status').classList.add('online');
-                return true;
-            } else {
-                document.getElementById('status').textContent = 'Online';
-                document.getElementById('status').classList.remove('offline');
-                document.getElementById('status').classList.add('online');
-            }
-        } else {
-            document.getElementById('status').textContent = 'Offline';
-            document.getElementById('status').classList.remove('online');
-            document.getElementById('status').classList.add('offline');
-        }
-    } catch (error) {
-        document.getElementById('status').textContent = 'Offline';
-        document.getElementById('status').classList.remove('online');
-        document.getElementById('status').classList.add('offline');
-    }
-    return false;
+  function isServerOnline(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true); // Image loaded successfully
+        img.onerror = () => resolve(false); // Failed to load
+        img.src = `${url}?cache_buster=${Date.now()}`; // Add cache buster to avoid caching
+    });
 }
 
-checkStatus('http://75.188.177.81/JackTheRipper/status.php');
+isServerOnline('http://75.188.177.81/JackTheRipper/images/unknown.png')
+    .then((online) => {
+        if (online) {
+          document.getElementById('status').textContent = 'Online';
+          document.getElementById('status').classList.remove('offline');
+          document.getElementById('status').classList.add('online');
+        } else {
+          document.getElementById('status').textContent = 'Offline';
+          document.getElementById('status').classList.remove('online');
+          document.getElementById('status').classList.add('offline');
+        }
+    });
 </script>
 
 </head>
