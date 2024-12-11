@@ -20,25 +20,36 @@
 
 <script>
   function isServerOnline(url) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         const img = new Image();
+        
         img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
+        
+        img.onerror = (error) => {
+          console.error('Error loading image:', error);
+          resolve(false);
+        };
+
         img.src = `${url}?cache_buster=${Date.now()}`;
     });
-}
+  }
 
-isServerOnline('https://75.188.177.81/JackTheRipper/images/unknown.png')
+  isServerOnline('https://75.188.177.81/JackTheRipper/images/unknown.png')
     .then((online) => {
+        const statusElement = document.getElementById('status');
+        
         if (online) {
-          document.getElementById('status').textContent = 'Online';
-          document.getElementById('status').classList.remove('offline');
-          document.getElementById('status').classList.add('online');
+          statusElement.textContent = 'Online';
+          statusElement.classList.remove('offline');
+          statusElement.classList.add('online');
         } else {
-          document.getElementById('status').textContent = 'Offline';
-          document.getElementById('status').classList.remove('online');
-          document.getElementById('status').classList.add('offline');
+          statusElement.textContent = 'Offline';
+          statusElement.classList.remove('online');
+          statusElement.classList.add('offline');
         }
+    })
+    .catch((error) => {
+        console.error('An error occurred while checking the server status:', error);
     });
 </script>
 
